@@ -9,7 +9,7 @@ In this section i will create all of the Azure cloud services and resources that
     - Create remote storage account for Terraform state files
     - Create an Azure AD group for AKS admins
 
-1 Azure DevOps setup
+# Azure DevOps setup
 
     Azure DevOps Organisation Setup
 
@@ -19,7 +19,7 @@ The first setup to setting up Azure DevOps is to create an organisation. We will
 2. Select **New Organisation**
 3. Enter your preferred Azure DevOps organisation name & hosting location 
 4. Once you have created your organisation, you can sign into your organisation anything using
-`https://dev.azure.com/{yourorganization`
+`https://dev.azure.com/{yourorganization}
 
 Once an organisation has been setup, next is to create an Azure DevOps project
 
@@ -62,7 +62,7 @@ After this initial setup,we are set and ready to deploy to Azure using Azure Dev
 
 
 
-2 Azure Terraform Setup
+## Azure Terraform Setup
 
     The purpose of this section is to create the location that will store the remote Terraform State file
 
@@ -71,7 +71,27 @@ After this initial setup,we are set and ready to deploy to Azure using Azure Dev
     Create Blob Storage location for Terraform State file
             
         1. Edit the variables
-        2. Run the script `./scripts/create-terraform-storage.sh`
+        2. Run the script {`./scripts/create-terraform-storage.sh`}
+        {
+
+            #!/bin/sh
+
+            RESOURCE_GROUP_NAME="devops-journey-rg"
+            STORAGE_ACCOUNT_NAME="devopsjourneyazuredevops"
+
+            # Create Resource Group
+            az group create -l uksouth -n $RESOURCE_GROUP_NAME
+
+            # Create Storage Account
+            az storage account create -n $STORAGE_ACCOUNT_NAME -g $RESOURCE_GROUP_NAME -l uksouth --sku Standard_LRS
+
+            # Create Storage Account blob
+            az storage container create  --name tfstate --account-name $STORAGE_ACCOUNT_NAME
+
+        }
+
+
+
         3. The script will create
         - Azure Resource Group
         - Azure Storage Account
@@ -79,12 +99,32 @@ After this initial setup,we are set and ready to deploy to Azure using Azure Dev
 
 
 
-# Create Azure AD Group for AKS Admins
+### Create Azure AD Group for AKS Admins
 
 The purpose of this lab to create an Azure AD Group for AKS Admins. These "admins" will be the group of users that will be able to access the AKS cluster using kubectl
 
-## Create Azure AD AKS Admin Group
+  Create Azure AD AKS Admin Group
 1. Run the script `./scripts/create-azure-ad-group.sh`
+
+    {
+
+        #!/bin/sh
+
+        AZURE_AD_GROUP_NAME="devopsjourney-aks-group"
+        CURRENT_USER_OBJECTID=$(az ad signed-in-user show --query objectId -o tsv)
+
+        # Create Azure AD Group
+        az ad group create --display-name $AZURE_AD_GROUP_NAME --mail-nickname $AZURE_AD_GROUP_NAME
+
+        # Add Current az login user to Azure AD Group
+        az ad group member add --group $AZURE_AD_GROUP_NAME --member-id $CURRENT_USER_OBJECTID
+
+        AZURE_GROUP_ID=$(az ad group show --group "devopsjourney-aks-group" --query objectId -o tsv)
+
+        echo "AZURE AD GROUP ID IS: $AZURE_GROUP_ID"
+
+    }
+
 2. The script will create
 - Azure AD Group named `"devopsthehardway-aks-group"`
 - Add current user logged into Az CLI to AD Group `"devopsthehardway-aks-group"`
