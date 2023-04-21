@@ -44,13 +44,21 @@ In this study, i will make use of the packages listed below as they will help in
 
     Terraform
 
-        Terraform is an infrastructure as code tool that lets you define both cloud and on-prem resources in human-readable configuration files that you can version, reuse, and share. You can then use a consistent workflow to provision and manage all of your infrastructure throughout its lifecycle. Terraform can manage low-level components like compute, storage, and networking resources, as well as high-level components like DNS entries and SaaS features.
+        Terraform is an infrastructure as code tool that lets you define both cloud and on-prem resources in human-readable configuration files
+         that you can version, reuse, and share. You can then use a consistent workflow to provision and manage all of your infrastructure 
+         throughout its lifecycle. Terraform can manage low-level components like compute, storage, and networking resources, as well as high-level 
+         components like DNS entries and SaaS features.
 
     Docker
-        Docker is an open platform for developing, shipping, and running applications. Docker enables you to separate your applications from your infrastructure so you can deliver software quickly. With Docker, you can manage your infrastructure in the same ways you manage your applications. By taking advantage of Docker’s methodologies for shipping, testing, and deploying code quickly, you can significantly reduce the delay between writing code and running it in production.
+        Docker is an open platform for developing, shipping, and running applications. Docker enables you to separate your applications
+         from your infrastructure so you can deliver software quickly. With Docker, you can manage your infrastructure in the same ways
+          you manage your applications. By taking advantage of Docker’s methodologies for shipping, testing, and deploying code quickly, 
+          you can significantly reduce the delay between writing code and running it in production.
 
     Azure 
-        Azure, is Microsoft's public cloud computing platform. It provides a broad range of cloud services, including compute, analytics, storage and networking. Users can pick and choose from these services to develop and scale new applications or run existing applications in the public cloud.
+        Azure, is Microsoft's public cloud computing platform. It provides a broad range of cloud services, including compute, analytics,
+         storage and networking. Users can pick and choose from these services to develop and scale new applications or run existing applications
+          in the public cloud.
 
 1.1.8	PROPOSED TIME ALLOCATION
 
