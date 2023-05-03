@@ -1,13 +1,16 @@
 #!/bin/sh
 
-RESOURCE_GROUP_NAME="devops-journey-rg"
-STORAGE_ACCOUNT_NAME="devopsjourneyazuredevops"
+#The first two lines define variables for the resource group name and storage account name. 
+#The RESOURCE_GROUP_NAME variable is set to "devops-journey-rg" and the STORAGE_ACCOUNT_NAME variable is set to "devopsjourneyazuredevops".
+
+RESOURCE_GROUP_NAME="Capstone2"
+STORAGE_ACCOUNT_NAME="CapstoneProject2"
 
 # Create Resource Group
-az group create -l uksouth -n $RESOURCE_GROUP_NAME
+az group create -l uksouth -n $Capstone2
 
 # Create Storage Account
-az storage account create -n $STORAGE_ACCOUNT_NAME -g $RESOURCE_GROUP_NAME -l uksouth --sku Standard_LRS
+az storage account create -n $CapstoneProject2 -g $Capstone2 -l uksouth --sku Standard_LRS
 
 # Create Storage Account blob
-az storage container create  --name tfstate --account-name $STORAGE_ACCOUNT_NAME
+az storage container create  --name tfstate --account-name $CapstoneProject2

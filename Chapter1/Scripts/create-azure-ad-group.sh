@@ -1,6 +1,6 @@
 #!/bin/sh
 
-AZURE_AD_GROUP_NAME="devopsjourney-aks-group"
+AZURE_AD_GROUP_NAME="capstone2-aks-group"
 CURRENT_USER_OBJECTID=$(az ad signed-in-user show --query objectId -o tsv)
 
 # Create Azure AD Group
